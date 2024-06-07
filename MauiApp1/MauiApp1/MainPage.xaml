@@ -1,0 +1,42 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.MainPage"
+             BackgroundColor="Grey">
+
+
+    <FlexLayout Direction="Column">
+        <VerticalStackLayout Padding="10" FlexLayout.Basis="Auto" BackgroundColor="DarkGrey">
+            <Entry x:Name="nameEntryField" Placeholder="Name" />
+            <Entry x:Name="priceEntryField" Placeholder="Price" />
+            <Entry x:Name="quantityEntryField" Placeholder="Quantity" />
+            <Button x:Name="saveButton" Text="Save" Clicked="saveButton_Clicked" BackgroundColor="Silver" />
+            <ContentPage.Resources>
+                <Style TargetType="Entry">
+                    <Setter Property="WidthRequest" Value="200" />
+                    <Setter Property="HeightRequest" Value="40" />
+                </Style>
+                <Style TargetType="Button">
+                    <Setter Property="WidthRequest" Value="100" />
+                    <Setter Property="HeightRequest" Value="40" />
+                </Style>
+            </ContentPage.Resources>
+        </VerticalStackLayout>
+        <ListView x:Name="listView" FlexLayout.Grow="1" HasUnevenRows="True" ItemTapped="listView_ItemTapped">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Padding="5">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Name}" FontSize="17" FontAttributes="Bold" />
+                                <Label Text="{Binding Price}" FontAttributes="Bold" />
+                                <Label Text="{Binding Quantity}" FontAttributes="Bold" />
+                            </VerticalStackLayout>
+                            <Button Text="Delete" Clicked="deleteButton_Clicked" BackgroundColor="Silver" CommandParameter="{Binding .}" />
+                        </FlexLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </FlexLayout>
+
+</ContentPage>
